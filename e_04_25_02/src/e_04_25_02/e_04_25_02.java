@@ -30,7 +30,7 @@ public class e_04_25_02 {
 		
 		for(int i=0; i < input_number; i++) {
 			
-			//整数をを入力するように促す 0 で終了
+			//整数をを入力するように促す 1000以上 で強制終了
 			System.out.print("整数 （1000以上は加算しません）: ");
 			
 			add= set_value.nextInt(); 	  	 		  // キーボードから入力された値を補完する
