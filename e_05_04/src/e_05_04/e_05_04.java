@@ -18,15 +18,15 @@ public class e_05_04 {
 		
 		//整数を入力して 合計と平均を表示させます
 		System.out.print("整数1を入力 : ");
-		int_digits_1 = set_value.nextInt();						//整数1つ目を代入 値は特に制限なし
+		int_digits_1 = set_value.nextInt();					//整数1つ目を代入 値は特に制限なし
 		
 		//整数を入力して 合計と平均を表示させます
 		System.out.print("整数2を入力 : ");
-		int_digits_2 = set_value.nextInt();						//整数2つ目を代入 値は特に制限なし
+		int_digits_2 = set_value.nextInt();					//整数2つ目を代入 値は特に制限なし
 		
 		//整数を入力して 合計と平均を表示させます
 		System.out.print("整数3を入力 : ");
-		int_digits_3 = set_value.nextInt();						//整数3つ目を代入 値は特に制限なし
+		int_digits_3 = set_value.nextInt();					//整数3つ目を代入 値は特に制限なし
 		
 		//3値の合計を表示します
 		System.out.println("合計 : " + (int_digits_1 + int_digits_2 + int_digits_3));
