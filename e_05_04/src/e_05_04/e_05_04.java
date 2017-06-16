@@ -31,8 +31,10 @@ public class e_05_04 {
 		//3値の合計を表示します
 		System.out.println("合計 : " + (int_digits_1 + int_digits_2 + int_digits_3));
 		
+		double ave = ((int_digits_1 + int_digits_2 + int_digits_3) / 3);		//3値の平均を格納する変数を定義
+		
 		//3値の平均を表示します
-		System.out.println("平均 : " + (double)((int_digits_1 + int_digits_2 + int_digits_3) / 3));
+		System.out.println("平均 : " + ave);
 		
 		//確保した領域を解放します
 		set_value.close();
