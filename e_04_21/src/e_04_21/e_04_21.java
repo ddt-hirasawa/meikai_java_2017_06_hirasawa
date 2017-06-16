@@ -18,7 +18,7 @@ public class e_04_21 {
 		//三角形の1辺を入力するように促す
 		System.out.print("三角形の1辺 : ");
 		
-		int triangle_integer = set_value.nextInt();  // 正方形の1辺を補完する変数
+		int triangle_integer = set_value.nextInt();  // 三角形の1辺を補完する変数
 
 		//三角形の種類を表示
 		System.out.println("左下直角2等辺三角形");
@@ -29,7 +29,7 @@ public class e_04_21 {
 			//三角形の横の該当するループ処理
 			for(int j=1; j <= i; j++) {
 				
-				//*を三角形を構成していく
+				//*で三角形を構成していく
 				System.out.print("*");
 			}
 			//横の長さの表示が終わったならば次の行に移る
@@ -45,7 +45,7 @@ public class e_04_21 {
 			//三角形の横の該当するループ処理
 			for(int j=triangle_integer; j >= i; j--) {
 				
-				//*を三角形を構成していく
+				//*で三角形を構成していく
 				System.out.print("*");
 			}
 			//横の長さの表示が終わったならば次の行に移る
@@ -68,7 +68,7 @@ public class e_04_21 {
 			//三角形の横の該当するループ処理
 			for(int j=1; j <= i; j++) {
 				
-				//*を三角形を構成していく
+				//*で三角形を構成していく
 				System.out.print("*");
 			}
 			//横の長さの表示が終わったならば次の行に移る
@@ -90,7 +90,7 @@ public class e_04_21 {
 			//三角形の横の該当するループ処理
 			for(int j=triangle_integer; j >= i; j--) {
 				
-				//*を三角形を構成していく
+				//*で三角形を構成していく
 				System.out.print("*");
 			}
 			//横の長さの表示が終わったならば次の行に移る
