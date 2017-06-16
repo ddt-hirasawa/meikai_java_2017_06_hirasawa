@@ -31,7 +31,7 @@ public class e_04_25_01 {
 		for(int i=0; i < input_number; i++) {
 			
 			//整数をを入力するように促す 0 で終了
-			System.out.print("整数 : ");
+			System.out.print("整数 （0 で加算終了）: ");
 			
 			add= set_value.nextInt(); 	  	 		  // キーボードから入力された値を補完する
 			
