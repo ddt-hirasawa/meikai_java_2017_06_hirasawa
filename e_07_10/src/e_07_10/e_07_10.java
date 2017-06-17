@@ -28,7 +28,7 @@ public class e_07_10 {
 			char operator2 = set_operator();				//演算子を+ - で設定 
 			
 			//正解するまで答えを入力するループ
-			for(; true;) {
+			for(;;){
 				
 				//暗算するための式を表示
 				System.out.print(value1 + " " +  operator1 + " " + value2 + " " + operator2 + " " + value3 + " = ");
@@ -113,7 +113,7 @@ public class e_07_10 {
 				//間違いの場合宣言してまた答えを入力
 				System.out.println("間違いです");
 			}
-			
+				
 		}while(confirm_retry());
 		
 		//数値を入力するために確保していた領域を解放する
@@ -144,24 +144,29 @@ public class e_07_10 {
 	//返却値 true false
 	static boolean confirm_retry() {
 		
-		Scanner set_value1 = new Scanner(System.in); 	    	//数値を入力するための領域を確保する
-		
+		Scanner set_value = new Scanner(System.in); 	    	//数値を入力するための領域を確保する
 		int answer;											//返却値を論理型として返すために使う変数
+		boolean re_turn = true;								//デフォルトは [継続する]
 		
 		do {
 			
 			//1 0 でループ脱却し暗算を継続するか判断する
 			System.out.print("もう一度 Yes -> 1 No -> 0");
 			
-			answer = set_value1.nextInt();						//1 0 の入力で継続するかを判断する
+			answer = set_value.nextInt();						//1 0 の入力で継続するかを判断する
 		
 		//1 0 でループ脱却
 		} while(answer != 1 && answer != 0);
 		
-		//数値を入力するために確保していた領域を解放する
-		set_value1.close();
-		
-		//返却値 1が代入されていれば true
-		return answer == 1;
+		//継続しない場合
+		if(answer == 0) {
+			
+			re_turn = false;									//0が入力されていた場合、返却値をfalseに更新
+			
+			//数値を入力するために確保していた領域を解放する
+			set_value.close();
+		}
+
+		return re_turn;
 	}
 }
