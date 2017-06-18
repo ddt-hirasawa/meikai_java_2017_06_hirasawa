@@ -1,6 +1,6 @@
-/* 演習7-12 指定した部分のbitを 1 にする 0にする 反転するメソッドの作成
+/* 演習7-12 ビットを左右に回転させるメソッドの作成
  * 
- * 作成日 2017年6月17日
+ * 作成日 2017年6月18日
  * 
  * 作成者 平澤敬介
  */
@@ -14,55 +14,37 @@ public class e_07_12 {
 	public static void main(String[] args) {
 		
 		Scanner set_value = new Scanner(System.in); 	    // 数値を入力するための領域を確保する
-		//bitを変更させる変数を入力するように促す
+		//シフト演算させる変数を入力するように促す
 		System.out.print("正の整数 : ");
-		int bit_num = set_value.nextInt();					//bitを変更させる変数を定義
+		int bit_left = set_value.nextInt();				//左にシフト演算させる変数を定義
+		int bit_right = bit_left;							//同じ値をシフト演算させるので右も同じ
 		
-		//変更する前の値を表示させる
-		System.out.print("変更前の構成を表示\n" + bit_num + " : ");
-		print_bit(bit_num);								//メソッドにより初期のビット構成を表示
+		//シフト演算する前の値を表示させる
+		System.out.print("シフト前の構成を表示\n" + bit_left + " : ");
+		print_bit(bit_right);								//メソッドにより初期のビット構成を表示
 		//改行して区切ります
 		System.out.println();
 		
-		//bitを変更する値を入力するように促す
-		System.out.print("何番目を 1 にしますか : ");
-		int select = set_value.nextInt();					//どの部分のbitを変更するか変数に格納します
+		//シフト演算させる変数を入力するように促す
+		System.out.print("いくつシフトさせますか : ");
+		int shift = set_value.nextInt();					//左右にシフトさせる値を決定
 		
-		bit_num = set(bit_num,select);						//演習内容 指定した部分を1にします
+		bit_right = rRotate(bit_right,shift);				//メソッドの呼び出し
+		bit_left = lRotate(bit_left,shift);				//左右にbitシフト
 		
-		//演習内容 1にします
-		System.out.println("bit " + select + " 番目を1にしました");
+		//いくつシフトしたか表示します
+		System.out.println("右に" + shift + "分シフトしました");
 		//シフト演算後の値を表示させる
-		System.out.print(bit_num + " : ");
-		print_bit(bit_num);								//メソッドによりシフトしたビット構成を表示
+		System.out.print(bit_right + " : ");
+		print_bit(bit_right);								//メソッドによりシフトしたビット構成を表示
 		//改行して区切ります
 		System.out.println();
 		
-		//bitを変更する値を入力するように促す
-		System.out.print("何番目を 0 にしますか : ");
-		select = set_value.nextInt();						//どの部分のbitを変更するか変数に格納します
-		
-		bit_num = reset(bit_num,select);					//演習内容 指定した部分を1にします
-		
-		//演習内容 0にします
-		System.out.println("bit " + select + " 番目を0にしました");
+		//いくつシフトしたか表示します
+		System.out.println("左に" + shift + "分シフトしました");
 		//シフト演算後の値を表示させる
-		System.out.print(bit_num + " : ");
-		print_bit(bit_num);								//メソッドによりシフトしたビット構成を表示
-		//改行して区切ります
-		System.out.println();
-		
-		//bitを変更する値を入力するように促す
-		System.out.print("何番目を 反転しますか : ");
-		select = set_value.nextInt();						//どの部分のbitを変更するか変数に格納します
-		
-		bit_num = inverse(bit_num,select);					//演習内容 指定した部分を反転します
-		
-		//演習内容 反転します
-		System.out.println("bit " + select + " 番目を反転しました");
-		//シフト演算後の値を表示させる
-		System.out.print(bit_num + " : ");
-		print_bit(bit_num);								//メソッドによりシフトしたビット構成を表示
+		System.out.print(bit_left + " : ");
+		print_bit(bit_left);								//メソッドによりシフトしたビット構成を表示
 		//改行して区切ります
 		System.out.println();
 		
@@ -83,55 +65,49 @@ public class e_07_12 {
 		}
 	}
 	
-	//メソッド 指定したビットを1にする
-	//引数 変更する変数と 変更する番号
-	//返却値 変更後の値
-	static int set(int tmp, int select) {
+	//メソッド 指定した変数を右にビットシフトさせる
+	//引数 シフトさせる変数と 右にシフトさせる数
+	//返却値 シフト後の値
+	static int rRotate(int tmp, int right) {
 		
-		//引数として与えた番号のbitを確認します
-		if((tmp >>> select & 1) == 0) {
+		//指定した回数 ビットをシフトさせます
+		for(int i=0; i < right; i++) {
 			
-			int shift_set = 1;					//シフト演算する値を定義 
-			shift_set <<= select;					//指定したビットが1の変数を作ります
-			tmp += shift_set;						//0の部分に1の変数を加算し 指定した部分を1にします
+			//0番目のbit が 1の時 シフトとは別に処理を行います
+			if( ( (tmp >>> 0 & 1)) == 1 ) {
+				
+				int set = 2147483647;			//この値は 31番目のみが 0 のビット構成
+				tmp >>>= 1;						//1つ右にbitシフト
+				tmp += ~set;					// 0を反転させ 31番目のみ 1 の値を加算
+			
+			//ただのbitシフト
+			} else {
+				tmp >>>= 1;						//1つ右にbitシフト
+			}
 		}
-		
 		return tmp;
 	}
 	
-	//メソッド 指定したビットを0にする
-	//引数 変更する変数と 変更する番号
-	//返却値 変更後の値
-	static int reset(int tmp, int select) {
+	//メソッド 指定した変数を左にビットシフトさせる
+	//引数 シフトさせる変数と 左にシフトさせる数
+	//返却値 シフト後の値
+	static int lRotate(int tmp, int left) {
 		
-		//引数として与えた番号のbitを確認します
-		if((tmp >>> select & 1) == 1) {
+		//指定した回数 ビットをシフトさせます
+		for(int i=0; i < left; i++) {
 			
-			int shift_set = 1;					//シフト演算する値を定義 
-			shift_set <<= select;					//指定したビットが1の変数を作ります
-			tmp -= shift_set;						//1の部分に1の変数を減算し 指定した部分を0にします
+			//31番目のbit が 1の時 シフトとは別に処理を行います
+			if( ( (tmp >>> 31 & 1)) == 1 ) {
+				
+				int set = 1;					//この値は 0番目のみが 1 のビット構成
+				tmp <<= 1;						//1つ左にbitシフト
+				tmp += set;						//0番目のみ 1 の値を加算
+			
+			//ただのbitシフト
+			} else {
+				tmp <<= 1;						//1つ左にbitシフト
+			}
 		}
-		
-		return tmp;
-	}
-	
-	//メソッド 指定したビットを反転する
-	//引数 変更する変数と 変更する番号
-	//返却値 変更後の値
-	static int inverse(int tmp, int select) {
-		
-		int shift_set = 1;						//シフト演算する値を定義 
-		shift_set <<= select;						//指定したビットが1の変数を作ります
-		
-		//引数として与えた番号のbitを確認します
-		if((tmp >>> select & 1) == 1) {
-			
-			tmp -= shift_set;						//1の部分に1の変数を減算し 指定した部分を0にします
-		} else {
-			
-			tmp += shift_set;						//0の部分に1の変数を加算し 指定した部分を1にします
-		}
-		
 		return tmp;
 	}
 }
