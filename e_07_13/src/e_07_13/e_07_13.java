@@ -91,9 +91,11 @@ public class e_07_13 {
 		//引数として与えた番号のbitを確認します
 		if((tmp >>> select & 1) == 0) {
 			
-			int shift_set = 1;					//シフト演算する値を定義 
+			/*int shift_set = 1;					//シフト演算する値を定義 
 			shift_set <<= select;					//指定したビットが1の変数を作ります
 			tmp += shift_set;						//0の部分に1の変数を加算し 指定した部分を1にします
+			*/
+			tmp |= (1 << select);
 		}
 		
 		return tmp;
@@ -107,9 +109,11 @@ public class e_07_13 {
 		//引数として与えた番号のbitを確認します
 		if((tmp >>> select & 1) == 1) {
 			
-			int shift_set = 1;					//シフト演算する値を定義 
+			/*int shift_set = 1;					//シフト演算する値を定義 
 			shift_set <<= select;					//指定したビットが1の変数を作ります
 			tmp -= shift_set;						//1の部分に1の変数を減算し 指定した部分を0にします
+			*/
+			tmp &= ~(1 << select);
 		}
 		
 		return tmp;
@@ -126,10 +130,10 @@ public class e_07_13 {
 		//引数として与えた番号のbitを確認します
 		if((tmp >>> select & 1) == 1) {
 			
-			tmp -= shift_set;						//1の部分に1の変数を減算し 指定した部分を0にします
+			tmp &= ~shift_set;						//1の部分に1の変数を減算し 指定した部分を0にします
 		} else {
 			
-			tmp += shift_set;						//0の部分に1の変数を加算し 指定した部分を1にします
+			tmp |= shift_set;						//0の部分に1の変数を加算し 指定した部分を1にします
 		}
 		
 		return tmp;
