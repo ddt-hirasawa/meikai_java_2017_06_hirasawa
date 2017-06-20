@@ -7,7 +7,7 @@
 
 package e_12_01;
 
-public class Running_Car extends Car {
+class Running_Car extends Car {
 	
 	private double total_move;					//総移動距離の変数を継承先で追加
 
