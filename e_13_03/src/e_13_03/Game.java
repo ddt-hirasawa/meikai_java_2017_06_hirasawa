@@ -14,6 +14,8 @@ abstract class Game {
 	
 	private int hand;							//じゃんけんの手
 	
+	
+	abstract int judgment(int partner);
 	//メソッド じゃんけんの手を調べる
 	public int out_put_hand() {
 		
